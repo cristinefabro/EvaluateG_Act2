@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Evaluation</title>
+    <style>
+        body {
+            background-color: rgb(192, 28, 143);
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            background-color: darkgreen;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Student Grade Evaluation</h1>
+    <label for="score">Enter Student Score:</label>
+    <input type="number" id="score" min="0" max="100" required>
+    <button onclick="evaluateGrade()">Evaluate Grade</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function evaluateGrade() {
+            const score = parseInt(document.getElementById('score').value);
+            let resultText = '';
+
+            if (isNaN(score) || score < 0 || score > 100) {
+                resultText = 'Please enter a valid score between 0 and 100.';
+            } else {
+                let letterGrade;
+                if (score >= 90) {
+                    letterGrade = 'A';
+                } else if (score >= 80) {
+                    letterGrade = 'B';
+                } else if (score >= 75) {
+                    letterGrade = 'C';
+                } else {
+                    letterGrade = 'F';
+                }
+
+                const status = score >= 75 ? 'Passing' : 'Failing';
+                resultText = `Score: ${score} - Letter Grade: ${letterGrade} - Status: ${status}`;
+            }
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+
+</body>
+</html>
